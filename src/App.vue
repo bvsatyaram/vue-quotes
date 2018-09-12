@@ -3,7 +3,7 @@
     <AppHeader></AppHeader>
     <AppProgress :quotesCount="quotesCount()"></AppProgress>
     <AppQuoteForm :addQuote="addQuote"></AppQuoteForm>
-    <AppQuotes :quotes="quotes"></AppQuotes>
+    <AppQuotes :quotes="quotes" :removeQuote="removeQuote"></AppQuotes>
     <AppFooter></AppFooter>
   </div>
 </template>
@@ -20,7 +20,10 @@ export default {
   name: 'app',
   data: () => {
     return {
-      quotes: []
+      quotes: [
+        'Where there is love there is life.',
+        'Brevity is the soul of wit.'
+      ]
     };
   },
   methods: {
@@ -35,6 +38,9 @@ export default {
         alert('You have 10 quotes already. Please delete a quote to add another.');
         return false;
       }
+    },
+    removeQuote(index) {
+      this.quotes.splice(index, 1);
     }
   },
   components: {

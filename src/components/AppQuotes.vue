@@ -1,6 +1,6 @@
 <template>
   <section class="row">
-    <AppQuote v-for="(quote, index) in quotes" :key="index">
+    <AppQuote v-for="(quote, index) in quotes" :key="index" @click.native="removeQuote(index)">
       {{quote}}
     </AppQuote>
   </section>
@@ -10,7 +10,7 @@
 import AppQuote from './AppQuote.vue';
 
 export default {
-  props: ['quotes'],
+  props: ['quotes', 'removeQuote'],
   components: {
     AppQuote
   }
