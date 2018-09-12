@@ -2,7 +2,7 @@
   <div class="card my-4">
     <div class="card-body">
       <h5 class="card-title">Add a Quote</h5>
-      <form @submit="addQuote">
+      <form @submit="handleSumbit($event)">
         <div class="form-row">
           <div class="col-9">
             <input type="text" v-model="quoteText" class="form-control" placeholder="Enter a Quote">
@@ -25,14 +25,15 @@ export default {
     }
   },
   props: {
-    quotesCount: {
-      type: Number,
-      default: 0
-    }
+    addQuote: Function
   },
   methods: {
-    addQuote() {
+    handleSumbit(ev) {
+      ev.preventDefault();
 
+      if (this.quoteText && this.addQuote(this.quoteText)) {
+        this.quoteText = '';
+      }
     }
   }
 }

@@ -2,7 +2,7 @@
   <div id="app" class="container">
     <AppHeader></AppHeader>
     <AppProgress :quotesCount="quotesCount()"></AppProgress>
-    <AppQuoteForm :quotesCount="quotesCount()"></AppQuoteForm>
+    <AppQuoteForm :addQuote="addQuote"></AppQuoteForm>
     <AppQuotes :quotes="quotes"></AppQuotes>
     <AppFooter></AppFooter>
   </div>
@@ -20,12 +20,21 @@ export default {
   name: 'app',
   data: () => {
     return {
-      quotes: ['Hello', 'World', 'Lol']
-    }
+      quotes: []
+    };
   },
   methods: {
     quotesCount() {
       return this.quotes.length;
+    },
+    addQuote(quote) {
+      if (this.quotes.length < 10) {
+        this.quotes.push(quote);
+        return true;
+      } else {
+        alert('You have 10 quotes already. Please delete a quote to add another.');
+        return false;
+      }
     }
   },
   components: {
